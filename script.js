@@ -7,9 +7,14 @@ const rEl = document.getElementById('rate');
 const swap = document.getElementById('swap');
 
 //Fetch exchange rates and update the DOM
-function compute() {}
-
-compute();
+function compute() {
+    console.log('test');
+}
 
 //Event listeners
 cEl_one.addEventListener('change', compute);
+aEl_one.addEventListener('input', compute);
+cEl_two.addEventListener('change', compute);
+aEl_two.addEventListener('input', compute);
+
+compute();
