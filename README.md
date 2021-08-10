@@ -1,2 +1,2 @@
-# Crypto-calculator
+# Currency-converter
 Javascript
