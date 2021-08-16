@@ -1,38 +1,36 @@
-const cEl_one = document.getElementById('currency-one');
-const aEl_one = document.getElementById('amount-one');
-const cEl_two = document.getElementById('currency-two');
-const aEl_two = document.getElementById('amount-two');
+const currencyElement_one = document.getElementById('currency-one');
+const amountElement_one = document.getElementById('amount-one');
+const currencyElement_two = document.getElementById('currency-two');
+const amountElement_two = document.getElementById('amount-two');
 
-const rEl = document.getElementById('rate');
+const rateElement = document.getElementById('rate');
 const swap = document.getElementById('swap');
 
 //Fetch exchange rates and update the DOM
 function compute() {
-    const c_one = cEl_one.value;
-    const c_two = cEl_two.value;
+    const currency_one = currencyElement_one.value;
+    const currency_two = currencyElement_two.value;
 
-    fetch('https://api.exchangerate-api.com/v4/latest/${c_one}')
+    fetch(`https://api.exchangerate-api.com/v4/latest/${currency_one}`)
     .then(res => res.json())
-    .then(data => {
-        const rate = data.rates[c_two];
+    .then(data => { const rate = data.rates[currency_two];
 
-        rEl.innerText = '1 ${c_one} = ${rate} ${c_two}';
+        rateElement.innerText = `1 ${currency_one} = ${rate} ${currency_two}`;
 
-        aEl_two.value = (aEl_one.value * rate).toFixed(2);
+        amountElement_two.value = (amountElement_one.value * rate).toFixed(2);
     });
-
 }
 
 //Event listeners
-cEl_one.addEventListener('change', compute);
-aEl_one.addEventListener('input', compute);
-cEl_two.addEventListener('change', compute);
-aEl_two.addEventListener('input', compute);
+currencyElement_one.addEventListener('change', compute);
+amountElement_one.addEventListener('input', compute);
+currencyElement_two.addEventListener('change', compute);
+amountElement_two.addEventListener('input', compute);
 
 swap.addEventListener('click', ()=> {
-    const temp = cEl_one.value;
-    cEl_one.value = cEl_two.value;
-    cEl_two = temp;
+    const temp = currencyElement_one.value;
+    currencyElement_one.value = currencyElement_two.value;
+    currencyElement_two.value = temp;
     compute();
 } );
 compute();
