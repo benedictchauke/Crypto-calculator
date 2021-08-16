@@ -1,2 +1,3 @@
-# Currency-converter
+# Currency-Converter
 Javascript
+
